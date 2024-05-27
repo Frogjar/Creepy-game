@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creepy Virus Game</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+  body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Creepster', Arial, sans-serif;
+    text-align: center;
+    overflow: hidden; /* Hide scrollbars */
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+  }
+
+  nav {
+    background-color: #333;
+    padding: 10px 0;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .image-container {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid transparent;
+    transition: border-color 0.5s, transform 0.5s;
+    filter: grayscale(100%);
+  }
+
+  .image-container:hover {
+    border-color: #ff0000;
+    filter: grayscale(0%);
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .scare-image {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: transform 0.1s;
+    z-index: 999;
+    animation: drip 1s linear infinite;
+  }
+
+  @keyframes drip {
+    0% {
+      transform: translate(-50%, -50%) scale(2.5);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(3);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.5);
+    }
+  }
+
+  .image-container:hover .scare-image {
+    display: block;
+  }
+
+  .scare-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .red-background {
+    animation: blinkRed 0.5s infinite alternate;
+  }
+
+  @keyframes blinkRed {
+    0% {
+      background-color: #000;
+    }
+    100% {
+      background-color: #ff0000;
+    }
+  }
+
+  .instructions {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+
+  footer {
+    background-color: #222;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  Creepy Virus Game
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+  <div class="image-container" onmouseover="playHoverSound(); blinkBackground(this)" onmouseout="stopBlinkBackground()">
+    <img src="https://media.istockphoto.com/id/173776099/vector/embarrassed-emoticon.jpg?s=612x612&w=0&k=20&c=YjpHUpgFiUFT3EC-BIwBchiv0Wuu5n81ld0M7pJCGp8=" alt="Slide 1">
+    <div class="scare-image">
+      <img src="https://www.pngmart.com/files/22/Cursed-Emoji-PNG-Isolated-HD.png" alt="Jump Scare">
+    </div>
+  </div>
+  <div class="image-container" onmouseover="playHoverSound(); blinkBackground(this)" onmouseout="stopBlinkBackground()">
+    <img src="https://media.istockphoto.com/id/853258706/vector/oops-emoticon.jpg?s=612x612&w=0&k=20&c=wkH5gxAHKcUGESs0Ddn9ftY6EX0M-loYNkYeeubHmQ4=" alt="Slide 2">
+    <div class="scare-image">
+      <img src="https://static.wikia.nocookie.net/meme/images/2/28/Stressed_Emoji.png/revision/latest/scale-to-width-down/250?cb=20210814093341" alt="Jump Scare">
+    </div>
+  </div>
+  <div class="image-container" onmouseover="playHoverSound(); blinkBackground(this)" onmouseout="stopBlinkBackground()">
+    <img src="https://i.pinimg.com/736x/d4/e0/a0/d4e0a0bb96577c083181d98bf91c9cce.jpg" alt="Slide 3">
+    <div class="scare-image">
+      <img src="https://img-07.stickers.cloud/packs/6462d68f-2149-4823-b792-d80e49dab434/webp/79ca4c79-8926-4664-a1a2-cbaf0266e396.webp" alt="Jump Scare">
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2024 Creepy Virus Game. All rights reserved.
+</footer>
+
+<audio id="hoverSound" src="https://freesound.org/data/previews/413/413748_5121236-lq.mp3" preload="auto"></audio>
+<audio id="backgroundSound" src="https://freesound.org/data/previews/413/413747_5121236-lq.mp3" preload="auto" loop></audio>
+
+<script>
+  document.getElementById('backgroundSound').play();
+
+  function playHoverSound() {
+    document.getElementById('hoverSound').play();
+  }
+
+  function blinkBackground(element) {
+    document.body.classList.add('red-background');
+  }
+
+  function stopBlinkBackground() {
+    document.body.classList.remove('red-background');
+  }
+</script>
+
+</body>
+</html>
